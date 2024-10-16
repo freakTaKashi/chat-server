@@ -1,0 +1,242 @@
+/* style.css */
+
+/* Сброс некоторых стандартных стилей */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Установка высоты и ширины для html и body */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+}
+
+/* Контейнер чата */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Используем viewport height */
+    width: 100%;
+    background-color: #ffffff;
+}
+
+/* Заголовок чата */
+.chat-header {
+    background-color: #ea0000; /* Ваш текущий цвет */
+    color: white;
+    padding: 15px 0 10px 15px;
+    text-align: left;
+    font-size: 25px;
+    flex-shrink: 0; /* Не позволяет заголовку сжиматься */
+}
+
+.rig {
+    background-color: #ea0000; /* Ваш текущий цвет */
+    color: white;
+    padding: 2px;
+    text-align: left;
+    font-size: 15px;
+    flex-shrink: 0; /* Не позволяет заголовку сжиматься */
+}
+/* Окно чата */
+.chat-window {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto; /* Обеспечивает вертикальную прокрутку */
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth; /* Плавная прокрутка */
+}
+
+/* Сообщения */
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Сообщения отправленные админом или пользователем */
+.message.sent {
+    flex-direction: row-reverse;
+}
+
+/* Сообщения полученные от другого пользователя */
+.message.received {
+    flex-direction: row;
+}
+
+/* Аватары */
+.message .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 20%;
+    background-color: #bdbdbd;
+    margin: 0 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Контейнер для содержимого сообщения и футера */
+.message-body {
+    display: flex;
+    flex-direction: column;
+    max-width: 60ch; /* Максимальная ширина ~60 символов */
+}
+
+/* Контент сообщения */
+.message-content {
+    padding: 10px 15px;
+    border-radius: 20px 10px 20px 20px;
+    word-break: normal; /* Разрешает перенос слов */
+    overflow-wrap: break-word; /* Переносит слова, не разрывая их */
+    max-width: 60ch; /* Максимальная ширина ~60 символов */
+    background-color: #ff0000; /* Цвет отправленного сообщения */
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Стиль полученных сообщений */
+.message.received .message-content {
+    word-break: normal; /* Разрешает перенос слов */
+    overflow-wrap: break-word; /* Переносит слова, не разрывая их */
+    max-width: 60ch; /* Максимальная ширина ~60 символов */
+    padding: 10px 15px;
+    border-radius: 10px 20px 20px 20px;
+    background-color: #ebebeb; /* Цвет полученного сообщения */
+    color: #000;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Хвостики сообщений удалены */
+
+/* Блок с временной меткой и именем отправителя */
+.message-footer {
+    font-size: 12px;
+    color: #a3a3a3;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Выравнивание футера в зависимости от отправителя */
+.message.sent .message-footer {
+    justify-content: flex-end;
+}
+
+.message.received .message-footer {
+    justify-content: flex-start;
+}
+
+/* Стили ссылок */
+.message.sent .message-content a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.message.received .message-content a {
+    color: #6e90ff75;
+    text-decoration: underline;
+}
+
+.message-content a:hover {
+    text-decoration: none;
+}
+
+/* Read Receipt */
+.read-receipt {
+    font-size: 10px;
+    color: #757575;
+    margin-top: 2px;
+    text-align: right;
+}
+
+/* Иконка прочтения */
+.read-icon {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-image: url('icons/read.png'); /* Путь к иконке прочтения */
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+/* Поле ввода */
+.chat-input {
+    display: flex;
+    padding: 10px;
+    background-color: #ffffff;
+    border-top: 1px solid #ffffff;
+    flex-shrink: 0; /* Не позволяет полю ввода сжиматься */
+    border-radius: 25px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ff0000;
+    border-radius: 25px;
+    margin-right: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+.chat-input button {
+    width: 50px;
+    height: 50px;
+    background-color: #ff0000;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.chat-input button:hover {
+    background-color: #b30000;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 600px) {
+    .message-body {
+        max-width: 80ch; /* Увеличенная ширина на мобильных устройствах */
+    }
+
+    .chat-header {
+        font-size: 20px;
+    }
+
+    .rig {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .message-body {
+        max-width: 80ch; /* Увеличенная ширина на очень маленьких экранах */
+    }
+
+    .chat-header {
+        font-size: 18px;
+    }
+
+    .rig {
+        font-size: 12px;
+    }
+}
+

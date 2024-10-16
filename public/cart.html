@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier - Rakuten</title>
+    <link rel="stylesheet" href="rakuten.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="/rakuten-logo.png" alt="Rakuten Logo">
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Que recherchez-vous ?">
+                <button>Rechercher</button>
+            </div>
+            <nav class="header-menu">
+                <a href="#">Vendre</a>
+                <a href="#">Aide</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="#">Accueil</a> > <a href="#">Mon Panier</a>
+        </div>
+        <div class="cart-container">
+            <div class="cart-item">
+                <div class="item-details">
+                    <img id="item-image" src="" alt="Image produit">
+                    <div class="item-info">
+                        <h2 id="item-name"></h2>
+                        <p>Vendu par <strong id="item-seller"></strong></p>
+                        <p class="item-condition" id="item-condition"></p>
+                        <p>Livraison à partir de <span id="item-shipping"></span></p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <p id="item-price" class="item-price"></p>
+                </div>
+            </div>
+
+            <div class="summary">
+                <h3>Résumé de votre commande</h3>
+                <p>Articles: 1</p>
+                <p>Sous-total: <span id="item-price-summary"></span></p>
+                <p>Frais de port: <span id="shipping-cost-summary"></span></p>
+                <p>Total: <span id="item-total-summary"></span></p>
+                <button class="checkout-btn">Procéder au paiement</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <div>
+                    <h4>Protection Rakuten</h4>
+                    <p>Satisfait ou remboursé</p>
+                </div>
+                <div>
+                    <h4>Modes de paiement</h4>
+                    <p>Paiement en plusieurs fois disponible</p>
+                </div>
+                <div>
+                    <h4>Service client</h4>
+                    <p>Assistance 24/7</p>
+                </div>
+            </div>
+            <div class="footer-payments">
+                <img src="/visa.png" alt="Visa">
+                <img src="/paypal.png" alt="PayPal">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const linkId = window.location.pathname.split('/').pop();
+
+            // Запрашиваем данные корзины
+            fetch(`/api/cart/${linkId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ошибка при получении данных корзины');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Обновляем HTML с данными корзины
+                    document.getElementById('item-name').textContent = data.item.name;
+                    document.getElementById('item-price').textContent = data.item.price;
+                    document.getElementById('item-price-summary').textContent = data.item.price;
+                    document.getElementById('item-seller').textContent = data.item.seller;
+                    document.getElementById('item-condition').textContent = data.item.condition;
+                    document.getElementById('item-shipping').textContent = data.item.shipping;
+                    document.getElementById('shipping-cost-summary').textContent = data.item.shipping;
+                    document.getElementById('item-total-summary').textContent = data.total;
+                    document.getElementById('item-image').src = data.item.image;
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        });
+    </script>
+</body>
+</html>

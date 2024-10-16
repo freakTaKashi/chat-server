@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Clientèle de Rakuten</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header"><strong>Service Clientèle de Rakuten</strong><div class="rig">● Nous répondons immédiatement </div>
+        </div>
+        <div class="chat-window" id="chat-window">
+            <!-- Сообщения будут добавляться здесь -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Enter le message...">
+            <button id="send-button">➤</button>
+        </div>
+    </div>
+    
+    <!-- Аудио элементы -->
+    <audio id="send-sound" src="sounds/send.mp3"></audio>
+    <audio id="receive-sound" src="sounds/receive.mp3"></audio>
+    
+    <!-- Подключение JavaScript -->
+    <script src="user_script.js"></script>
+</body>
+</html>

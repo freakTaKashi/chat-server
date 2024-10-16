@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ Чат</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header" id="chat-header">Чат</div>
+        <div class="chat-window" id="chat-window">
+            <!-- Сообщения будут добавляться здесь -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Введите сообщение...">
+            <button id="send-button">➤</button>
+        </div>
+    </div>
+    
+    <!-- Аудио элементы -->
+    <audio id="send-sound" src="sounds/send.mp3"></audio>
+    <audio id="receive-sound" src="sounds/receive.mp3"></audio>
+    
+    <!-- Подключение JavaScript -->
+    <script src="admin_script.js"></script>
+</body>
+</html>
